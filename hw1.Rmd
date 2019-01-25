@@ -1,27 +1,62 @@
-Homework 1 - [Your name here]
+Homework 1 - Shakira Dineshkumar
 ========================================================
 
 ### Task 1 - Implementation
 
+Methods for Implementation
+In order to determine how to code the Fizzbuzz problem, we must understand that the condition where "Fizzbuzz" is printed (a number is divisible by both 3 and 5) is checked before the conditions for "Fizz" (being divisible by 3) and "Buzz" (being divisible by 5) are checked.  If the integer is a multiple of 3 and 5, the loop will reset and go to the next value in the range specified by the user, if the integer does not meet this first condition, it will check for divisibility by 5 and then 3. If none are multiples of 3 or 5, it will print the integer and go on to the next value in the range until it reaches the end of the vector.
 
-Use this section to implement the fizzbuzz function.
-
-This should replace this text with a short write up describing your approach
-to implementing the function. Note that both code formating / style
-and your writeup matter for your overall grade.
+To protect against bad user input, I used a "testInteger" function to test if the value is an integer.  Within the fizzbuzz function, I also protect against bad user input for infinity or negative infinity, characters, and negative numbers.  Code inspiration and used from Stack Overflow (https://stackoverflow.com/questions/3476782/check-if-the-number-is-integer) and (http://wiki.c2.com/?FizzBuzzTest).
 
 
-```{r}
-fizzbuzz = function(v) {
 
+```{r, warning = FALSE}
+
+
+testInteger <- function(x){
+  test <- all.equal(x, as.integer(x), check.attributes = FALSE)
+  if(test == TRUE){ return(TRUE) }
+  else { return(FALSE) }
 }
+
+fizzbuzz<-function(x){
+  
+  if (x==Inf | x==-Inf| is.character(x)==TRUE| sign(x)== -1|testInteger(x)== FALSE |"-" %in% x )
+    stop("invalid input") 
+  for (i in x) {
+ if (i %% 3 == 0 & i %% 5 == 0) {print("FizzBuzz")}
+ else if (i %% 3 == 0) {print("Fizz")}
+ else if (i %% 5 == 0) {print("Buzz")}
+ else print(i)
+  }
+}
+
+
 ```
 
 ### Task 2 - Validation & Testing
 
 #### Good Inputs
 
-```{r}
+```{r, warning = FALSE}
+testInteger <- function(x){
+  test <- all.equal(x, as.integer(x), check.attributes = FALSE)
+  if(test == TRUE){ return(TRUE) }
+  else { return(FALSE) }
+}
+
+fizzbuzz<-function(x){
+  
+  if (x==Inf | x==-Inf| is.character(x)==TRUE| sign(x)== -1|testInteger(x)== FALSE |"-" %in% x )
+    stop("invalid input") 
+  for (i in x) {
+ if (i %% 3 == 0 & i %% 5 == 0) {print("FizzBuzz")}
+ else if (i %% 3 == 0) {print("Fizz")}
+ else if (i %% 5 == 0) {print("Buzz")}
+ else print(i)
+  }
+}
+
 fizzbuzz(1)
 fizzbuzz(3)
 fizzbuzz(5)
@@ -34,7 +69,26 @@ fizzbuzz(15:9)
 
 #### Bad Inputs
 
-```{r error=TRUE}
+```{r error=TRUE, warning=FALSE}
+
+testInteger <- function(x){
+  test <- all.equal(x, as.integer(x), check.attributes = FALSE)
+  if(test == TRUE){ return(TRUE) }
+  else { return(FALSE) }
+}
+
+fizzbuzz<-function(x){
+  
+  if (x==Inf | x==-Inf| is.character(x)==TRUE| sign(x)== -1|testInteger(x)== FALSE |"-" %in% x )
+    stop("invalid input") 
+  for (i in x) {
+ if (i %% 3 == 0 & i %% 5 == 0) {print("FizzBuzz")}
+ else if (i %% 3 == 0) {print("Fizz")}
+ else if (i %% 5 == 0) {print("Buzz")}
+ else print(i)
+  }
+}
+
 fizzbuzz(-1)
 fizzbuzz(-3)
 fizzbuzz(-5)
